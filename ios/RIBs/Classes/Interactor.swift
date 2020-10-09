@@ -19,7 +19,7 @@ import RxSwift
 import UIKit
 
 /// Protocol defining the activeness of an interactor's scope.
-public protocol InteractorScope: class {
+public protocol InteractorScope: AnyObject {
 
     // The following properties must be declared in the base protocol, since `Router` internally invokes these methods.
     // In order to unit test router with a mock interactor, the mocked interactor first needs to conform to the custom
@@ -34,6 +34,7 @@ public protocol InteractorScope: class {
     /// - note: Subscription to this stream always immediately returns the last event. This stream terminates after
     ///   the interactor is deallocated.
     var isActiveStream: Observable<Bool> { get }
+    
 }
 
 /// The base protocol for all interactors.
@@ -55,6 +56,7 @@ public protocol Interactable: InteractorScope {
     /// - note: This method is internally invoked by the corresponding router. Application code should never explicitly
     ///   invoke this method.
     func deactivate()
+    
 }
 
 /// An `Interactor` defines a unit of business logic that corresponds to a router unit.
@@ -145,6 +147,7 @@ open class Interactor: Interactable {
         }
         isActiveSubject.onCompleted()
     }
+    
 }
 
 /// Interactor related `Observable` extensions.
@@ -175,6 +178,7 @@ public extension ObservableType {
                 value
             }
     }
+    
 }
 
 /// Interactor related `Disposable` extensions.
@@ -204,4 +208,5 @@ public extension Disposable {
         }
         return self
     }
+    
 }

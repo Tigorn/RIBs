@@ -41,7 +41,7 @@ private final class TestComponent: Component<EmptyComponent> {
 
     private(set) var callCount: Int = 0
     private(set) var expectedOptionalShare: ClassProtocol? = {
-        return ClassProtocolImpl()
+        ClassProtocolImpl()
     }()
 
     var share: NSObject {
@@ -50,18 +50,15 @@ private final class TestComponent: Component<EmptyComponent> {
     }
 
     var share2: NSObject {
-        return shared { NSObject() }
+        shared { NSObject() }
     }
 
     fileprivate var optionalShare: ClassProtocol? {
-        return shared { self.expectedOptionalShare }
+        shared { self.expectedOptionalShare }
     }
+    
 }
 
-private protocol ClassProtocol: AnyObject {
+private protocol ClassProtocol: AnyObject { }
 
-}
-
-private final class ClassProtocolImpl: ClassProtocol {
-
-}
+private final class ClassProtocolImpl: ClassProtocol { }

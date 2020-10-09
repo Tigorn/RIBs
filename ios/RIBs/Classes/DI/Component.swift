@@ -43,7 +43,10 @@ open class Component<DependencyType>: Dependency {
     ///
     /// - parameter factory: The closure to construct the dependency.
     /// - returns: The instance.
-    public final func shared<T>(__function: String = #function, _ factory: () -> T) -> T {
+    public final func shared<T>(
+        __function: String = #function,
+        _ factory: () -> T
+    ) -> T {
         lock.lock()
         defer {
             lock.unlock()
@@ -73,5 +76,5 @@ open class Component<DependencyType>: Dependency {
 open class EmptyComponent: EmptyDependency {
 
     /// Initializer.
-    public init() {}
+    public init() { }
 }

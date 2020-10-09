@@ -75,7 +75,10 @@ public class LeakDetector {
     /// - parameter inTime: The time the given object is expected to be deallocated within.
     /// - returns: The handle that can be used to cancel the expectation.
     @discardableResult
-    public func expectDeallocate(object: AnyObject, inTime time: TimeInterval = LeakDefaultExpectationTime.deallocation) -> LeakDetectionHandle {
+    public func expectDeallocate(
+        object: AnyObject,
+        inTime time: TimeInterval = LeakDefaultExpectationTime.deallocation
+    ) -> LeakDetectionHandle {
         expectationCount.accept(expectationCount.value + 1)
 
         let objectDescription = String(describing: object)
@@ -171,7 +174,7 @@ public class LeakDetector {
         return LeakDetector.disableLeakDetectorOverride
     }()
 
-    private init() {}
+    private init() { }
 }
 
 fileprivate class LeakDetectionHandleImpl: LeakDetectionHandle {
@@ -191,4 +194,5 @@ fileprivate class LeakDetectionHandleImpl: LeakDetectionHandle {
         cancelledRelay.accept(true)
         cancelClosure?()
     }
+    
 }
