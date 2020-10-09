@@ -55,7 +55,7 @@ class InteractorMock: Interactable {
 
     private let active = BehaviorRelay<Bool>(value: false)
 
-    init() {}
+    init() { }
 
     // MARK: - Lifecycle
 
@@ -82,7 +82,7 @@ class InteractableMock: Interactable {
     var deactivateHandler: (() -> ())?
     var deactivateCallCount: Int = 0
 
-    init() {}
+    init() { }
 
     func activate() {
         activateCallCount += 1

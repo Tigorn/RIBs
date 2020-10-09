@@ -50,14 +50,14 @@ open class Workflow<ActionableItemType> {
     }
 
     /// Initializer.
-    public init() {}
+    public init() { }
 
     /// Execute the given closure as the root step.
     ///
     /// - parameter onStep: The closure to execute for the root step.
     /// - returns: The next step.
     public final func onStep<NextActionableItemType, NextValueType>(_ onStep: @escaping (ActionableItemType) -> Observable<(NextActionableItemType, NextValueType)>) -> Step<ActionableItemType, NextActionableItemType, NextValueType> {
-        return Step(workflow: self, observable: subject.asObservable().take(1))
+        Step(workflow: self, observable: subject.asObservable().take(1))
             .onStep { (actionableItem: ActionableItemType, _) in
                 onStep(actionableItem)
             }

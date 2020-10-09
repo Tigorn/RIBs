@@ -32,8 +32,8 @@ open class PresentableInteractor<PresenterType>: Interactor {
     }
 
     // MARK: - Private
-
     deinit {
         LeakDetector.instance.expectDeallocate(object: presenter as AnyObject)
     }
+    
 }

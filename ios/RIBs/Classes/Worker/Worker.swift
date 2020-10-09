@@ -20,7 +20,7 @@ import RxSwift
 ///
 /// `Worker`s are always bound to an `Interactor`. A `Worker` can only start if its bound `Interactor` is active.
 /// It is stopped when its bound interactor is deactivated.
-public protocol Working: class {
+public protocol Working: AnyObject {
 
     /// Starts the `Worker`.
     ///
@@ -214,4 +214,5 @@ fileprivate class WeakInteractorScope: InteractorScope {
     fileprivate init(sourceScope: InteractorScope) {
         self.sourceScope = sourceScope
     }
+    
 }
