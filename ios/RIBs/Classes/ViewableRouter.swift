@@ -80,7 +80,7 @@ open class ViewableRouter<InteractorType, ViewControllerType>: Router<Interactor
                 self.viewControllerDisappearExpectation = nil
 
                 if !isActive {
-                    let viewController = self.viewControllable.uiviewController
+                    let viewController = self.viewControllable.uiViewController
                     self.viewControllerDisappearExpectation = LeakDetector.instance.expectViewControllerDisappear(viewController: viewController)
                 }
             })
